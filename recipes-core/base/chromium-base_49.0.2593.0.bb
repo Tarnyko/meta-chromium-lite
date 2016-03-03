@@ -11,21 +11,23 @@ FILESEXTRAPATHS_prepend := ":${THISDIR}/../../shared:"
 
 DEPENDS = "libevent icu python"
 
-SRCREV_${BPN} = "19e64b167ab02b06f0af0f94d326e154c321a6f9"
+NAME = "${@'${BPN}'.replace('chromium-', '')}"
+
+SRCREV_${NAME} = "dcd1e3f4218b8a119fef068c2993a7989fde8922"
 SRCREV_build = "1aa26aaba531135f3ca9ffd522bffb3f7b8f1be6"
-SRCREV_testing = "341033c3e485025968d9cee5a7372eb678d35341"
-SRCREV_icu = " 8d342a405be5ae8aacb1e16f0bc31c3a4fbf26a2"
+SRCREV_gtest = "6f8a66431cb592dad629028a50b3dd418a408c87"
+SRCREV_icu = "8d342a405be5ae8aacb1e16f0bc31c3a4fbf26a2"
 SRC_URI = " \
-           git://github.com/Tarnyko/chromium-${BPN}.git;name=${BPN} \
+           git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \
            git://github.com/Tarnyko/chromium-build.git;name=build;destsuffix=git/build \
-           git://github.com/Tarnyko/chromium-testing.git;name=testing;destsuffix=git/testing \
+           git://github.com/Tarnyko/chromium-gtest.git;name=gtest;destsuffix=git/testing/gtest \
            git://github.com/Tarnyko/chromium-icu.git;name=icu;destsuffix=git/third_party/icu \
            file://LICENSE \
            file://CMakeLists.txt \
            file://time_formatting_noicufork.patch \
           "
 
-S = "${WORKDIR}/git/${BPN}"
+S = "${WORKDIR}/git/${NAME}"
 
 inherit cmake pkgconfig
 
@@ -36,3 +38,12 @@ do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}
        cp ${WORKDIR}/CMakeLists.txt ${S}
 }
+
+do_install_append() {
+       mkdir -p ${D}${includedir}/chromium/${NAME}
+       cd ${S}
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+}
+
+FILES_${PN} += "${libdir}/chromium/*.so"
+FILES_${PN}-dbg += "${libdir}/chromium/.debug/*"
