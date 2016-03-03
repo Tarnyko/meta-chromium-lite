@@ -19,12 +19,12 @@ INCLUDE(GNUInstallDirs)
 # Mandatory dependencies
 PKG_CHECK_MODULES(icui18n REQUIRED icu-i18n)
 
-FIND_PROGRAM(PYTHON_FOUND python)
-IF(NOT PYTHON_FOUND)
-  MESSAGE(FATAL_ERROR "\"python\" is required, please install it !")
-ELSE()
-  MESSAGE(STATUS "\"python\" found...")
-ENDIF(NOT PYTHON_FOUND)
+#FIND_PROGRAM(PYTHON_FOUND python)
+#IF(NOT PYTHON_FOUND)
+#  MESSAGE(FATAL_ERROR "\"python\" is required, please install it !")
+#ELSE()
+#  MESSAGE(STATUS "\"python\" found...")
+#ENDIF(NOT PYTHON_FOUND)
 
 # Common definitions
 ADD_DEFINITIONS(-DV8_SHARED -DBUILDING_V8_SHARED -DUSING_V8_SHARED)
