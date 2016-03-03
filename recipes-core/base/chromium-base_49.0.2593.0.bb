@@ -20,8 +20,8 @@ SRCREV_icu = "8d342a405be5ae8aacb1e16f0bc31c3a4fbf26a2"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \
            git://github.com/Tarnyko/chromium-build.git;name=build;destsuffix=git/build \
-           git://github.com/Tarnyko/chromium-gtest.git;name=gtest;destsuffix=git/testing/gtest \
-           git://github.com/Tarnyko/chromium-icu.git;name=icu;destsuffix=git/third_party/icu \
+           git://github.com/google/googletest.git;name=gtest;destsuffix=git/testing/gtest \
+           git://chromium.googlesource.com/chromium/deps/icu.git;protocol=https;name=icu;destsuffix=git/third_party/icu \
            file://LICENSE \
            file://CMakeLists.txt \
            file://time_formatting_noicufork.patch \
