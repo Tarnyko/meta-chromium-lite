@@ -36,8 +36,8 @@ do_configure_prepend() {
 }
 
 do_install_append() {
-       mkdir -p ${D}${includedir}/chromium/${NAME}
        cd ${S}
+       mkdir -p ${D}${includedir}/chromium/${NAME}
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
 }
 

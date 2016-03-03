@@ -40,9 +40,19 @@ do_configure_prepend() {
 }
 
 do_install_append() {
-       mkdir -p ${D}${includedir}/chromium/${NAME}
        cd ${S}
+       mkdir -p ${D}${includedir}/chromium/${NAME}
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+       # we need to provide these headers, too
+       cd ${S}/../build
+       mkdir -p ${D}${includedir}/chromium/build
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/build
+       cd ${S}/../testing
+       mkdir -p ${D}${includedir}/chromium/testing
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/testing
+       cd ${S}/../third_party/icu
+       mkdir -p ${D}${includedir}/chromium/third_party/icu
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/icu
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"
