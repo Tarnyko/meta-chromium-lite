@@ -7,7 +7,7 @@ HOMEPAGE = "https://developers.google.com/v8"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=71f2c485344c921f659ea9f7d895ea22"
 
-DEPENDS = "icu python"
+DEPENDS = "icu python-native"
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
