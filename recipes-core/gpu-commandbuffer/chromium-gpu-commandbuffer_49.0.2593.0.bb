@@ -1,5 +1,6 @@
 SUMMARY = "Chromium GPU Command Buffer"
-DESCRIPTION = "Stores, validates, and error-checks OpenGL ES commands before they are sent to the GPU."
+DESCRIPTION = "Stores, validates, and error-checks OpenGL ES commands before \
+they are sent to the GPU."
 HOMEPAGE = "https://www.chromium.org"
 
 LICENSE = "BSD"

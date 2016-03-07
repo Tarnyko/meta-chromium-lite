@@ -1,5 +1,8 @@
 SUMMARY = "Chromium Net helper library"
-DESCRIPTION = "The core of Chromium network protocol handling (http://, ftp://, file://, SPDY, HTTP/2, WebSockets...). Also provides various browser-oriented mechanisms such as cache and cookies management, DNS resolving, proxy settings, SSL certificate validation..."
+DESCRIPTION = "The core of Chromium network protocol handling (http://, \
+ftp://, file://, SPDY, HTTP/2, WebSockets...). Also provides various \
+browser-oriented mechanisms such as cache and cookies management, DNS \
+resolving, proxy settings, SSL certificate validation..."
 HOMEPAGE = "https://www.chromium.org"
 
 LICENSE = "BSD"
