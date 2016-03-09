@@ -23,8 +23,8 @@ S = "${WORKDIR}/git/gpu/command_buffer"
 
 inherit cmake pkgconfig
 
-OECMAKE_CXX_FLAGS_append = " -I${STAGING_INCDIR}/chromium"
-OECMAKE_CXX_LINK_FLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase"
+CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
+LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

@@ -22,8 +22,8 @@ S = "${WORKDIR}/git/${NAME}"
 
 inherit cmake pkgconfig
 
-OECMAKE_CXX_FLAGS_append = " -I${STAGING_INCDIR}/chromium"
-OECMAKE_CXX_LINK_FLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase"
+CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
+LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}
@@ -34,6 +34,9 @@ do_install_append() {
        cd ${S}
        mkdir -p ${D}${includedir}/chromium/${NAME}
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+       cd ${S}/../third_party/sqlite
+       mkdir -p ${D}${includedir}/chromium/third_party/sqlite
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/sqlite
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"
