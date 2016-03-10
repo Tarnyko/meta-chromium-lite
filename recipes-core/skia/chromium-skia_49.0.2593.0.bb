@@ -1,11 +1,10 @@
 SUMMARY = "Chromium Skia library"
 DESCRIPTION = "Skia is a low-level drawing API used by both the Blink web \
-engine and the Chromium UI GFX library to draw UI elements (respectively, web \
-pages themselves and the browser GUI around them). It handles canvases, colors,\
- animations... font rendering, on the other hand, is left to the platform (on \
-GNU/Linux, Freetype and Fontconfig). The Chromium version differs from the \
-standalone one in that it overrides a few classes (to expose private elements) \
-and adds some specific ones."
+engine and the Chromium UI Gfx library to draw the Chromium UI. It handles \
+canvases, colors, animations... font rendering, on the other hand, is left to \
+the platform (specifically Freetype/Fontconfig on GNU/Linux). The Chromium \
+version differs from the standalone one, in that it overrides a few classes \
+(to expose private elements) and adds several specific ones."
 HOMEPAGE = "https://www.chromium.org"
 
 LICENSE = "BSD"
