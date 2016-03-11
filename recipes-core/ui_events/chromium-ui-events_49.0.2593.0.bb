@@ -43,7 +43,7 @@ do_configure_prepend() {
 do_install_append() {
        cd ${S}
        mkdir -p ${D}${includedir}/chromium/ui/events
-       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/ui/events
+       cp --parents `find . -name "*.h" -o -name "*.inc"` ${D}${includedir}/chromium/ui/events
        cd ${S}/../ozone
        mkdir -p ${D}${includedir}/chromium/ui/ozone
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/ui/ozone
