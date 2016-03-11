@@ -12,7 +12,7 @@ DEPENDS = "chromium-base chromium-url chromium-net chromium-skia chromium-ui-gfx
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV = "5dd7421bdc4193b10032c0866d732f9ed27a6179"
+SRCREV = "d9821ad807437d81e33b60868a2503cd676dd107"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git \
            file://LICENSE \

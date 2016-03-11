@@ -12,7 +12,7 @@ DEPENDS = "chromium-base"
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV = "d974a7758c6f223fca4c7420b139326f928b1305"
+SRCREV = "0e3186cd4345cd9cb4b9b9958272044ca118a261"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git \
            file://LICENSE \
@@ -38,7 +38,9 @@ do_install_append() {
        cp ../gpu_export.h ${D}${includedir}/chromium/gpu
        cd ${S}/../GLES2
        mkdir -p ${D}${includedir}/chromium/GLES2
+       mkdir -p ${D}${includedir}/chromium/gpu/GLES2
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/GLES2
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/gpu/GLES2
        cd ${S}/../../third_party/khronos
        mkdir -p ${D}${includedir}/chromium/third_party/khronos
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/khronos
