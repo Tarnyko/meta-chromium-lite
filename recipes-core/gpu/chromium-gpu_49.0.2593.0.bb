@@ -13,7 +13,7 @@ DEPENDS = "chromium-base chromium-crypto chromium-gpu-commandbuffer chromium-ipc
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "f0b81a9e053ae4bc2d4a2e4226f8f366a11d422e"
+SRCREV_${NAME} = "6fb6073a089ecc32dc2827181983709778e7838e"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
 SRCREV_angle = "457f1d929e5fd911e0ad9ea53db43010dfae0662"
 SRCREV_smhasher = "e87738e57558e0ec472b2fc3a643b838e5b6e88f"
@@ -34,7 +34,10 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland',
 PACKAGECONFIG[wayland] = "-DBACKEND=OZONE"
 PACKAGECONFIG[x11] = "-DBACKEND=X11,,virtual/libx11 libxext"
 
-CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu"
+CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/mesa/src/include -DGL_CONTEXT_LOST_KHR=0x0507"
+# we NEED to include "third_party/mesa/src/include", because it contains
+# GL headers whose definitions match those from "third_party/khronos/KHR/*.h",
+# which are heavily pulled by ANGLE
 LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lcrcrypto -lgpu_command_buffer -lipc -lui_gfx -lui_gl"
 
 do_configure_prepend() {

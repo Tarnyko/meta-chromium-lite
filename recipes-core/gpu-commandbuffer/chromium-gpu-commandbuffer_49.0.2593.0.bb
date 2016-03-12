@@ -17,6 +17,7 @@ SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git \
            file://LICENSE \
            file://CMakeLists.txt \
+           file://use_chromium_gl2_header.patch \
           "
 
 S = "${WORKDIR}/git/gpu/command_buffer"

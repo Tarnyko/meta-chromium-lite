@@ -73,8 +73,8 @@ ENDIF()
 
 MESSAGE(STATUS "Generating .cc,.h files from .proto...")
 
-EXECUTE_PROCESS(COMMAND mkdir -p command_buffer/service/ WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
-EXECUTE_PROCESS(COMMAND ${PROTOC_WRAPPER_DIR}/tools/protoc_wrapper/protoc_wrapper.py --proto-in-dir command_buffer/service --proto-in-file disk_cache_proto.proto --use-system-protobuf=1 -- protoc --cpp_out ${CMAKE_BINARY_DIR}/command_buffer/service WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+EXECUTE_PROCESS(COMMAND mkdir -p gpu/command_buffer/service/ WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+EXECUTE_PROCESS(COMMAND ${PROTOC_WRAPPER_DIR}/tools/protoc_wrapper/protoc_wrapper.py --proto-in-dir command_buffer/service --proto-in-file disk_cache_proto.proto --use-system-protobuf=1 -- protoc --cpp_out ${CMAKE_BINARY_DIR}/gpu/command_buffer/service WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 MESSAGE(STATUS "Generating Angle commit.h from Git header...")
 
@@ -103,7 +103,7 @@ ADD_LIBRARY(skia OBJECT skia_bindings/gl_bindings_skia_cmd_buffer.cc)
 ADD_LIBRARY(ipc OBJECT ipc/gpu_command_buffer_traits.cc)
 
 # generated (this is generated !)
-ADD_LIBRARY(generated OBJECT ${CMAKE_BINARY_DIR}/command_buffer/service/disk_cache_proto.pb.cc)
+ADD_LIBRARY(generated OBJECT ${CMAKE_BINARY_DIR}/gpu/command_buffer/service/disk_cache_proto.pb.cc)
 
 # backend
 ADD_LIBRARY(backend OBJECT ${BACKEND_SOURCE_FILES})
@@ -122,7 +122,7 @@ ADD_LIBRARY(smhasher OBJECT ${SMHASHER_SOURCE_DIR}/src/City.cpp)
 # we add "noninclude" in front here, because its "glext.h" header
 # contains the GL_CONTEXT_LOST_KHR definition we need
 # we include CMAKE_BINARY_DIR because generated .cc/.h files are inside
-SET(include_dirs ${INCLUDE_DIRS} ${backend_INCLUDE_DIRS} ${CHROMIUM_GL_DIR}/noninclude ${CHROMIUM_GL_DIR} ${CHROMIUM_GLES2_EXT_DIR} ${SKIA_EXT_DIR}/config ${SKIA_SOURCE_DIR}/include/core ${SKIA_SOURCE_DIR}/include/utils ${SKIA_SOURCE_DIR}/include/gpu ${ANGLE_SOURCE_DIR}/include ${ANGLE_SOURCE_DIR}/src ${RE2_SOURCE_DIR} ${CMAKE_BINARY_DIR}/command_buffer/service ${CMAKE_SOURCE_DIR}/..)
+SET(include_dirs ${INCLUDE_DIRS} ${backend_INCLUDE_DIRS} ${CHROMIUM_GL_DIR}/noninclude ${CHROMIUM_GL_DIR} ${CHROMIUM_GLES2_EXT_DIR} ${SKIA_EXT_DIR}/config ${SKIA_SOURCE_DIR}/include/core ${SKIA_SOURCE_DIR}/include/utils ${SKIA_SOURCE_DIR}/include/gpu ${ANGLE_SOURCE_DIR}/include ${ANGLE_SOURCE_DIR}/src ${RE2_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/gpu/command_buffer/service ${CMAKE_SOURCE_DIR}/..)
 SET(link_libraries ${backend_LIBRARIES})
 
 ADD_LIBRARY(gpu SHARED $<TARGET_OBJECTS:c_lib> $<TARGET_OBJECTS:command_buffer_client> $<TARGET_OBJECTS:command_buffer_service> $<TARGET_OBJECTS:config> $<TARGET_OBJECTS:skia> $<TARGET_OBJECTS:ipc> $<TARGET_OBJECTS:generated> $<TARGET_OBJECTS:backend> $<TARGET_OBJECTS:angle> $<TARGET_OBJECTS:re2> $<TARGET_OBJECTS:smhasher>)

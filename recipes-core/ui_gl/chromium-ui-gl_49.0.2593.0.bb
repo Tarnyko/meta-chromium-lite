@@ -41,6 +41,9 @@ do_install_append() {
        cd ${S}
        mkdir -p ${D}${includedir}/chromium/ui/gl
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/ui/gl
+       cd ${S}/../../third_party/mesa
+       mkdir -p ${D}${includedir}/chromium/third_party/mesa
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/mesa
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"
