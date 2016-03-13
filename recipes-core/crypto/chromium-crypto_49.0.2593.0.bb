@@ -1,5 +1,7 @@
 SUMMARY = "Chromium Cryptographic helper library"
-DESCRIPTION = "Handles hashing, randomization and encryption."
+DESCRIPTION = "Handles hashing, randomization and encryption. It can use 2 \
+implementations: Google BoringSSL (OpenSSL fork) or Mozilla NSS; we build \
+NSS because it is widespread as system libraries."
 HOMEPAGE = "https://www.chromium.org"
 
 LICENSE = "BSD"

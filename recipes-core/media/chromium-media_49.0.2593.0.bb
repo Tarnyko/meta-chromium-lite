@@ -1,5 +1,6 @@
 SUMMARY = "Chromium Media library"
-DESCRIPTION = ""
+DESCRIPTION = "Provides audio playback (with ALSA, PulseAudio), video playback ,\
+codec interface. Currently, PulseAudio and FFmpeg are disabled."
 HOMEPAGE = "https://www.chromium.org"
 
 LICENSE = "BSD"

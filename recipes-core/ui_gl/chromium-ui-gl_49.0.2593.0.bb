@@ -41,6 +41,7 @@ do_install_append() {
        cd ${S}
        mkdir -p ${D}${includedir}/chromium/ui/gl
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/ui/gl
+       # these specific Mesa headers are required by GPU
        cd ${S}/../../third_party/mesa
        mkdir -p ${D}${includedir}/chromium/third_party/mesa
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/mesa
