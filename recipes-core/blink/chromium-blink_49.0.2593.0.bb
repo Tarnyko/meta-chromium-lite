@@ -56,9 +56,24 @@ do_install_append() {
        mkdir -p ${D}${includedir}/chromium/third_party/WebKit
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/WebKit
        # we need to copy generated headers living in the "build" directory
-#       cd ${B}/${NAME}
-#       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+       cd ${B}/${NAME}
+       mkdir -p ${D}${includedir}/chromium/${NAME}
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+       cd ${B}/bindings
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/WebKit/Source/bindings
+       cd ${B}/core
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/WebKit/Source/core
+       cd ${B}/modules
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/WebKit/Source/modules
+       cd ${B}/platform
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/WebKit/Source/platform
+       # we need to copy generated .pak files living in the "build" directory
+       mkdir -p ${D}${datadir}/chromium
+       cp ${B}/${NAME}/public/resources/*.pak ${D}${datadir}/chromium
+       # this is required to build Content
+       cp -r ${B}/devtools ${D}${datadir}/chromium
 }
 
-FILES_${PN} += "${libdir}/chromium/*.so"
+FILES_${PN} += "${libdir}/chromium/*.so ${datadir}/chromium/*.pak"
+FILES_${PN}-dev += "${datadir}/chromium/devtools/*"
 FILES_${PN}-dbg += "${libdir}/chromium/.debug/*"
