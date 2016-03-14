@@ -14,7 +14,7 @@ DEPENDS = "chromium-base chromium-skia chromium-ui-gfx chromium-ui-events chromi
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "da17269a73cf006f78f8a0e533bd2f2e9fbe0afb"
+SRCREV_${NAME} = "e0ec441a24ba8d78e0e69b642066c174c50abbfe"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \

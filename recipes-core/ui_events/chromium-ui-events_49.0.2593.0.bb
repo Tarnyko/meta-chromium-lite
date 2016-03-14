@@ -15,7 +15,7 @@ DEPENDS = "chromium-base chromium-ipc chromium-skia chromium-ui-gfx libxkbcommon
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "8c173ba5974e0055e0289caa89035b82f9907b20"
+SRCREV_${NAME} = "63179d49b117b071bf86462476e2e1361b4e5e3e"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \

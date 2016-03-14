@@ -28,7 +28,13 @@ S = "${WORKDIR}/git/ozone"
 
 inherit cmake pkgconfig
 
-CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
+# we NEED to prioritize the source directory here, because it contains a
+# duplicate of the "ui/platform_window" headers which are also provided by
+# "ui_aura" ; it does this because these headers differ between X11 and Wayland.
+# If "ui_aura" was built with X11, and we switch to Wayland and rebuild, "ozone"
+# will build before "ui_aura"; it may then try to use the "ui_aura" headers,
+# which are still configured for X11, and thus fail...
+CXXFLAGS_append = " -I${S}/.. -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
 LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lipc -lskia -lui_gfx -lui_base"
 
 do_configure_prepend() {

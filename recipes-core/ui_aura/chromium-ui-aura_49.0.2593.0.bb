@@ -14,7 +14,7 @@ DEPENDS = "chromium-base chromium-skia chromium-ui-gfx chromium-ui-events chromi
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "6361d3d10f8cd9a3c94e9d1368cca776beaf3cec"
+SRCREV_${NAME} = "6818a82795e34172f0ed6eb01deea10bdee47040"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \
            file://LICENSE \
@@ -35,6 +35,12 @@ LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lskia -lui_gfx -lui_even
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}
        cp ${WORKDIR}/CMakeLists.txt ${S}
+       # we may need to apply Ozone-Wayland specific patches
+       if ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'true', 'false', d)}; then
+           cd ${S}/../..
+           patch -f -p1 < OZONE-0007-Add-needed-support-in-PlatformWindow.patch
+           patch -f -p1 < OZONE-0013-Add-drag-and-drop-interfaces-to-PlatformWindowDelega.patch
+       fi
 }
 
 do_install_append() {

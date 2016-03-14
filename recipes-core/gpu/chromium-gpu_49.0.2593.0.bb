@@ -13,7 +13,7 @@ DEPENDS = "chromium-base chromium-crypto chromium-gpu-commandbuffer chromium-ipc
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "6fb6073a089ecc32dc2827181983709778e7838e"
+SRCREV_${NAME} = "bd8f674f4fa758654b6fee4a8b94faafbec4c7c4"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
 SRCREV_angle = "457f1d929e5fd911e0ad9ea53db43010dfae0662"
 SRCREV_smhasher = "e87738e57558e0ec472b2fc3a643b838e5b6e88f"
