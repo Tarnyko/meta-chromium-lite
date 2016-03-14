@@ -1,0 +1,135 @@
+--- a/browser/browser_main_loop.cc	2016-02-16 05:11:58.532520564 +0000
++++ b/browser/browser_main_loop.cc	2016-02-16 05:12:28.785948225 +0000
+@@ -63,7 +63,7 @@
+ #include "content/public/common/content_switches.h"
+ #include "content/public/common/main_function_params.h"
+ #include "content/public/common/result_codes.h"
+-#include "device/battery/battery_status_service.h"
++//#include "device/battery/battery_status_service.h"
+ #include "ipc/ipc_channel.h"
+ #include "media/audio/audio_manager.h"
+ #include "media/base/media.h"
+@@ -1154,12 +1154,14 @@
+     TRACE_EVENT0("shutdown", "BrowserMainLoop::Subsystem:SensorService");
+     DeviceInertialSensorService::GetInstance()->Shutdown();
+   }
++#if 0
+ #if !defined(OS_ANDROID)
+   {
+     TRACE_EVENT0("shutdown", "BrowserMainLoop::Subsystem:BatteryStatusService");
+     device::BatteryStatusService::GetInstance()->Shutdown();
+   }
+ #endif
++#endif
+   {
+     TRACE_EVENT0("shutdown", "BrowserMainLoop::Subsystem:DeleteDataSources");
+     URLDataManager::DeleteDataSources();
+--- a/browser/renderer_host/render_process_host_impl.cc	2016-02-17 10:35:19.988993274 +0000
++++ b/browser/renderer_host/render_process_host_impl.cc	2016-02-17 10:39:58.044078220 +0000
+@@ -149,8 +149,10 @@
+ #include "content/public/common/result_codes.h"
+ #include "content/public/common/sandboxed_process_launcher_delegate.h"
+ #include "content/public/common/url_constants.h"
++#if 0
+ #include "device/battery/battery_monitor_impl.h"
+ #include "device/vibration/vibration_manager_impl.h"
++#endif
+ #include "gpu/GLES2/gl2extchromium.h"
+ #include "gpu/command_buffer/client/gpu_switches.h"
+ #include "gpu/command_buffer/common/gles2_cmd_utils.h"
+@@ -1034,12 +1036,14 @@
+ 
+ void RenderProcessHostImpl::RegisterMojoServices() {
+ #if !defined(OS_ANDROID)
++#if 0
+   mojo_application_host_->service_registry()->AddService(
+       base::Bind(&device::BatteryMonitorImpl::Create));
+ 
+   mojo_application_host_->service_registry()->AddService(
+       base::Bind(&device::VibrationManagerImpl::Create));
+ #endif
++#endif
+ 
+   mojo_application_host_->service_registry()->AddService(
+       base::Bind(&PermissionServiceContext::CreateService,
+--- a/browser/renderer_host/render_process_host_impl.cc	2016-02-19 09:20:38.842843738 +0000
++++ b/browser/renderer_host/render_process_host_impl.cc	2016-02-19 09:21:45.610796325 +0000
+@@ -1028,10 +1028,12 @@
+ #endif
+   AddFilter(new GeofencingDispatcherHost(
+       storage_partition_impl_->GetGeofencingManager()));
++#if 0
+   if (browser_command_line.HasSwitch(switches::kEnableWebBluetooth)) {
+     bluetooth_dispatcher_host_ = new BluetoothDispatcherHost(GetID());
+     AddFilter(bluetooth_dispatcher_host_.get());
+   }
++#endif
+ }
+ 
+ void RenderProcessHostImpl::RegisterMojoServices() {
+@@ -2671,8 +2673,10 @@
+   audio_renderer_host()->GetOutputControllers(callback);
+ }
+ 
++#if 0
+ BluetoothDispatcherHost* RenderProcessHostImpl::GetBluetoothDispatcherHost() {
+   return bluetooth_dispatcher_host_.get();
+ }
++#endif
+ 
+ }  // namespace content
+--- a/common/content_message_generator.h	2016-02-19 09:43:49.488678639 +0000
++++ b/common/content_message_generator.h	2016-02-19 09:43:55.136759181 +0000
+@@ -8,7 +8,7 @@
+ 
+ #include "content/common/accessibility_messages.h"
+ #include "content/common/appcache_messages.h"
+-#include "content/common/bluetooth/bluetooth_messages.h"
++//#include "content/common/bluetooth/bluetooth_messages.h"
+ #include "content/common/browser_plugin/browser_plugin_messages.h"
+ #include "content/common/cache_storage/cache_storage_messages.h"
+ #include "content/common/cc_messages.h"
+--- a/browser/renderer_host/render_process_host_impl.cc	2016-03-14 03:08:44.797500385 +0000
++++ b/browser/renderer_host/render_process_host_impl.cc	2016-03-14 03:09:01.172727420 +0000
+@@ -43,7 +43,9 @@
+ #include "content/browser/appcache/chrome_appcache_service.h"
+ #include "content/browser/background_sync/background_sync_service_impl.h"
+ #include "content/browser/bad_message.h"
++#if 0
+ #include "content/browser/bluetooth/bluetooth_dispatcher_host.h"
++#endif
+ #include "content/browser/browser_child_process_host_impl.h"
+ #include "content/browser/browser_main.h"
+ #include "content/browser/browser_main_loop.h"
+--- a/browser/renderer_host/render_process_host_impl.h	2016-03-14 03:17:00.253372539 +0000
++++ b/browser/renderer_host/render_process_host_impl.h	2016-03-14 03:18:01.719225504 +0000
+@@ -49,7 +49,9 @@
+ namespace content {
+ class AudioInputRendererHost;
+ class AudioRendererHost;
++#if 0
+ class BluetoothDispatcherHost;
++#endif
+ class BrowserCdmManager;
+ class BrowserDemuxerAndroid;
+ class GpuMessageFilter;
+@@ -258,7 +260,9 @@
+   void GetAudioOutputControllers(
+       const GetAudioOutputControllersCallback& callback) const override;
+ 
++#if 0
+   BluetoothDispatcherHost* GetBluetoothDispatcherHost();
++#endif
+ 
+  protected:
+   // A proxy for our IPC::Channel that lives on the IO thread.
+@@ -441,7 +445,9 @@
+ 
+   scoped_refptr<AudioInputRendererHost> audio_input_renderer_host_;
+ 
++#if 0
+   scoped_refptr<BluetoothDispatcherHost> bluetooth_dispatcher_host_;
++#endif
+ 
+ #if defined(OS_ANDROID)
+   scoped_refptr<BrowserDemuxerAndroid> browser_demuxer_android_;

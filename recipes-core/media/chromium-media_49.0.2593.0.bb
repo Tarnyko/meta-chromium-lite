@@ -12,7 +12,7 @@ DEPENDS = "chromium-base chromium-url chromium-crypto chromium-gpu-commandbuffer
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "6eea3e774848f933ad70257d14889229f5db5155"
+SRCREV_${NAME} = "5ed40694f3562902b1099924fbd9dafd1a14d91a"
 SRCREV_cdm = "a4773c3cec827c3a880e8a2c22e43a287ced0d20"
 SRCREV_libyuv = "1019e4537fc1bfc6ee505cd1c628b645c7e966b7"
 SRCREV_libwebm = "75a6d2da8b63e0c446ec0ce1ac942c2962d959d7"

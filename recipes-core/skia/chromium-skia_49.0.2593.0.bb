@@ -59,10 +59,14 @@ do_install_append() {
        cd ${S}/../../skia
        mkdir -p ${D}${includedir}/chromium/skia
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/skia
+       # this is required to build Content
+       mkdir -p ${D}${datadir}/chromium/skia
+       cp --parents `find . -name "*.mojom"` ${D}${datadir}/chromium/skia
        # we need to copy generated headers living in the "build" directory
        cd ${B}/${NAME}
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"
+FILES_${PN}-dev += "${datadir}/chromium/*"
 FILES_${PN}-dbg += "${libdir}/chromium/.debug/*"

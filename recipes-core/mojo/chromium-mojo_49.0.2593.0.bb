@@ -35,10 +35,14 @@ do_install_append() {
        cd ${S}
        mkdir -p ${D}${includedir}/chromium/${NAME}
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+       # this is required to build Content
+       mkdir -p ${D}${datadir}/chromium/mojo
+       cp --parents `find . -name "*.mojom"` ${D}${datadir}/chromium/mojo
        # we need to copy generated headers living in the "build" directory
        cd ${B}/${NAME}
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"
+FILES_${PN}-dev += "${datadir}/chromium/*"
 FILES_${PN}-dbg += "${libdir}/chromium/.debug/*"

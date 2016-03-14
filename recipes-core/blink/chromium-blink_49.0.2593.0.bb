@@ -72,6 +72,8 @@ do_install_append() {
        cp ${B}/${NAME}/public/resources/*.pak ${D}${datadir}/chromium
        # this is required to build Content
        cp -r ${B}/devtools ${D}${datadir}/chromium
+       cd ${S}/devtools
+       cp --parents `find . -name "*.json" -o -name "*.js" -o -name "*.css" -o -name "*.html"` ${D}${datadir}/chromium/devtools
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so ${datadir}/chromium/*.pak"
