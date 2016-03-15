@@ -10,11 +10,11 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0fca02217a5d49a14dfe2d11837bb34d"
 
 FILESEXTRAPATHS_prepend := ":${THISDIR}/../../shared:"
 
-DEPENDS = "chromium-base chromium-url chromium-gin chromium-net chromium-mojo chromium-storage chromium-ipc chromium-skia chromium-ui-gfx chromium-ui-accessibility chromium-ui-events chromium-media chromium-ui-base chromium-ui-gl chromium-gpu chromium-cc chromium-blink chromium-ui-events-blink chromium-gpu-blink chromium-cc-blink chromium-ui-aura chromium-ui-touchselection chromium-ui-snapshot chromium-ui-shelldialogs chromium-media-blink nss minizip python-native python-jinja2-native python-ply-native"
+DEPENDS = "chromium-base chromium-url chromium-gin chromium-net chromium-mojo chromium-storage chromium-ipc chromium-skia chromium-ui-gfx chromium-ui-accessibility chromium-ui-events chromium-media chromium-ui-base chromium-ui-gl chromium-gpu chromium-cc chromium-blink chromium-ui-events-blink chromium-gpu-blink chromium-cc-blink chromium-ui-aura chromium-ui-touchselection chromium-ui-snapshot chromium-ui-shelldialogs chromium-media-blink nss minizip protobuf protobuf-native python-native python-jinja2-native python-ply-native"
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "55a3da9b6d8acd9d8e378dc246e13a871aa36210"
+SRCREV_${NAME} = "334a62a5b5b2a194ccf150ccc0d1782ddd93296b"
 SRCREV_build = "1aa26aaba531135f3ca9ffd522bffb3f7b8f1be6"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
 SRCREV_mojo = "cf59faa001ce1dc4ed51e86d1069346152db6cb4"
@@ -52,9 +52,10 @@ PACKAGECONFIG[wayland] = "-DBACKEND=OZONE"
 PACKAGECONFIG[x11] = "-DBACKEND=X11,,virtual/libx11 libxcomposite pango"
 
 # Content needs a path to various Blink resources files
-EXTRA_OECMAKE_append = " -DDATADIR:PATH=${STAGING_DATADIR}/chromium"
+EXTRA_OECMAKE_append = " -DINCDIR:PATH=${STAGING_INCDIR}/chromium -DDATADIR:PATH=${STAGING_DATADIR}/chromium"
 
-CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/WebKit"
+# The first paths are for generated headers (Mojo, Skia, UI Gfx & CC) having relative paths
+CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/mojo -I${STAGING_INCDIR}/chromium/skia -I${STAGING_INCDIR}/chromium/ui -I${STAGING_INCDIR}/chromium/cc -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/WebKit -I${STAGING_INCDIR}/chromium/third_party/leveldatabase/src -I${STAGING_INCDIR}/chromium/third_party/leveldatabase/src/include -I${STAGING_INCDIR}/chromium/third_party/angle/src -I${STAGING_INCDIR}/chromium/third_party/mesa/src/include -I${STAGING_INCDIR}/chromium/v8/include -I${STAGING_INCDIR}/chromium/third_party/libyuv/include"
 LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lurl_lib -lgin -lnet -lmojo -lstorage -lipc -lskia -lui_gfx -lui_accessibility -lui_events -lmedia -lui_base -lui_gl -lgpu -lcc -lblink -lui_events_blink -lgpu_blink -lcc_blink -lui_aura -lui_touch_selection -lui_snapshot -lui_shell_dialogs -lmedia_blink"
 
 do_configure_prepend() {

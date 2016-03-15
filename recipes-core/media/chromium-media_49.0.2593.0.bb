@@ -62,6 +62,9 @@ do_install_append() {
        cd ${S}/../third_party/libwebm
        mkdir -p ${D}${includedir}/chromium/third_party/libwebm
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/libwebm
+       cd ${S}/../third_party/libyuv
+       mkdir -p ${D}${includedir}/chromium/third_party/libyuv
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/libyuv
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"

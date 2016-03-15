@@ -91,6 +91,8 @@ ENDIF(BACKEND STREQUAL "X11")
 
 # Common definitions
 ADD_DEFINITIONS(-DCONTENT_IMPLEMENTATION -DTRACING_IMPLEMENTATION -DSCHEDULER_IMPLEMENTATION -DSANDBOX_IMPLEMENTATION -DUSE_DEFAULT_RENDER_THEME -DUSE_SYSTEM_MINIZIP -DNO_TCMALLOC -DOS_LINUX -DOS_POSIX -DUSE_AURA)
+# This is required by some versions of Mesa
+ADD_DEFINITIONS(-DMESA_EGL_NO_X11_HEADERS)
 # This is because we are including "inttypes.h" with a Mojo header
 ADD_DEFINITIONS(-D__STDC_FORMAT_MACROS)
 # Required for our BoringSSL->NSS patches
@@ -139,8 +141,8 @@ EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindi
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/permission_service.mojom --use_bundled_pylibs -d . -I.. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/application_setup.mojom --use_bundled_pylibs -d . -I.. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/presentation/presentation_service.mojom --use_bundled_pylibs -d . -I.. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-# the ${DATADIR} value is passed by the parent build system
-EXECUTE_PROCESS(COMMAND ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/image_downloader/image_downloader.mojom --use_bundled_pylibs -d . -I${DATADIR} -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+# the ${INCDIR} value is passed by the parent build system
+EXECUTE_PROCESS(COMMAND ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/image_downloader/image_downloader.mojom --use_bundled_pylibs -d . -I${INCDIR} -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/service_worker/embedded_worker_setup.mojom --use_bundled_pylibs -d . -I.. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py public/common/service_worker_event_status.mojom --use_bundled_pylibs -d . -I. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py public/common/permission_status.mojom --use_bundled_pylibs -d . -I. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
@@ -149,8 +151,8 @@ EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindi
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/background_sync_service.mojom --use_bundled_pylibs -d . -I.. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/geolocation_service.mojom --use_bundled_pylibs -d . -I.. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/wake_lock_service.mojom --use_bundled_pylibs -d . -I.. -o ${CMAKE_BINARY_DIR}/content WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
-# the ${DATADIR} value is passed by the parent build system
-EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/process_control.mojom --use_bundled_pylibs -d .. -I${DATADIR} -I${MOJO_SRC_DIR}/services -o ${CMAKE_BINARY_DIR} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+# the ${INCDIR} value is passed by the parent build system
+EXECUTE_PROCESS(COMMAND python ${MOJO_SRC_DIR}/public/tools/bindings/mojom_bindings_generator.py common/process_control.mojom --use_bundled_pylibs -d .. -I${INCDIR} -I${MOJO_SRC_DIR}/services -o ${CMAKE_BINARY_DIR} WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 
 # PRE-GENERATION .PROTO -> .CC,.H,.PY
 

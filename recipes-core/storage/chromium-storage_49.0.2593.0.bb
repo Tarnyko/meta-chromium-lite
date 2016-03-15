@@ -40,6 +40,9 @@ do_install_append() {
        cd ${S}
        mkdir -p ${D}${includedir}/chromium/${NAME}
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+       cd ${S}/../third_party/leveldatabase
+       mkdir -p ${D}${includedir}/chromium/third_party/leveldatabase
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/leveldatabase
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"

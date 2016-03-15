@@ -47,8 +47,8 @@ do_install_append() {
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/harfbuzz-ng
        # this is required to build Content
        cd ${S}/../mojo/geometry
-       mkdir -p ${D}${datadir}/chromium/ui/mojo/geometry
-       cp --parents `find . -name "*.mojom"` ${D}${datadir}/chromium/ui/mojo/geometry
+       mkdir -p ${D}${includedir}/chromium/ui/mojo/geometry
+       cp --parents `find . -name "*.mojom"` ${D}${includedir}/chromium/ui/mojo/geometry
        # we need to copy generated headers living in the "build" directory
        cd ${B}/ui/gfx
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/ui/gfx
@@ -58,5 +58,4 @@ do_install_append() {
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"
-FILES_${PN}-dev += "${datadir}/chromium/*"
 FILES_${PN}-dbg += "${libdir}/chromium/.debug/*"
