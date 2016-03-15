@@ -18,7 +18,7 @@ SRC_URI = " \
 inherit cmake
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
-LDFLAGS_append = " -Wl,-rpath-link,${STAGING_LIBDIR}"
+LDFLAGS_append = " -Wl,-rpath-link,${STAGING_LIBDIR}/chromium"
 LDFLAGS_remove = " -Wl,--as-needed"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lurl_lib'"
 
