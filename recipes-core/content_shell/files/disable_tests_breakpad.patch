@@ -121,8 +121,8 @@
  
    return renderer_client_.get();
  }
---- browser/shell_content_browser_client.cc	2016-02-26 17:57:18.439980642 +0000
-+++ browser/shell_content_browser_client.cc	2016-02-29 16:01:47.248944143 +0000
+--- a/browser/shell_content_browser_client.cc	2016-02-26 17:57:18.439980642 +0000
++++ b/browser/shell_content_browser_client.cc	2016-02-29 16:01:47.248944143 +0000
 @@ -19,7 +19,7 @@
  #include "content/public/common/content_switches.h"
  #include "content/public/common/url_constants.h"
@@ -200,8 +200,8 @@
    ResourceDispatcherHost::Get()->SetDelegate(
        resource_dispatcher_host_delegate_.get());
  }
---- browser/shell.cc	2016-02-29 16:46:07.927510025 +0000
-+++ browser/shell.cc	2016-02-29 16:50:22.988114093 +0000
+--- a/browser/shell.cc	2016-02-29 16:46:07.927510025 +0000
++++ b/browser/shell.cc	2016-02-29 16:50:22.988114093 +0000
 @@ -337,11 +337,14 @@
  JavaScriptDialogManager* Shell::GetJavaScriptDialogManager(
      WebContents* source) {
@@ -217,8 +217,8 @@
    }
    return dialog_manager_.get();
  }
---- browser/blink_test_controller.h	2016-02-29 18:29:21.638207183 +0000
-+++ browser/blink_test_controller.h	2016-02-29 18:31:16.633839830 +0000
+--- a/browser/blink_test_controller.h	2016-02-29 18:29:21.638207183 +0000
++++ b/browser/blink_test_controller.h	2016-02-29 18:31:16.633839830 +0000
 @@ -223,9 +223,9 @@
    const bool is_leak_detection_enabled_;
    bool crash_when_leak_found_;
@@ -231,8 +231,8 @@
  
  #if defined(OS_ANDROID)
    // Because of the nested message pump implementation, Android needs to allow
---- browser/blink_test_controller.cc	2016-02-29 18:24:32.779106400 +0000
-+++ browser/blink_test_controller.cc	2016-02-29 18:57:56.717532352 +0000
+--- a/browser/blink_test_controller.cc	2016-02-29 18:24:32.779106400 +0000
++++ b/browser/blink_test_controller.cc	2016-02-29 18:57:56.717532352 +0000
 @@ -210,8 +210,9 @@
        is_leak_detection_enabled_(
            base::CommandLine::ForCurrentProcess()->HasSwitch(
@@ -362,8 +362,8 @@
  }
  
  }  // namespace content
---- renderer/shell_render_view_observer.cc	2016-02-29 18:14:12.908307843 +0000
-+++ renderer/shell_render_view_observer.cc	2016-02-29 18:14:42.207723676 +0000
+--- a/renderer/shell_render_view_observer.cc	2016-02-29 18:14:12.908307843 +0000
++++ b/renderer/shell_render_view_observer.cc	2016-02-29 18:14:42.207723676 +0000
 @@ -22,10 +22,12 @@
  
  void ShellRenderViewObserver::DidClearWindowObject(
@@ -377,8 +377,8 @@
  }
  
  }  // namespace content
---- utility/shell_content_utility_client.cc	2016-02-26 18:14:19.306878134 +0000
-+++ utility/shell_content_utility_client.cc	2016-02-26 18:14:53.986383172 +0000
+--- a/utility/shell_content_utility_client.cc	2016-02-26 18:14:19.306878134 +0000
++++ b/utility/shell_content_utility_client.cc	2016-02-26 18:14:53.986383172 +0000
 @@ -6,7 +6,7 @@
  
  #include "base/bind.h"

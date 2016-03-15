@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0fca02217a5d49a14dfe2d11837bb34d"
 
 FILESEXTRAPATHS_prepend := ":${THISDIR}/../../shared:"
 
-DEPENDS = "chromium-base chromium-url chromium-skia chromium-ui-gfx chromium-ui-accessibility chromium-ui-events chromium-ui-base chromium-ui-compositor chromium-ui-aura chromium-ui-shelldialogs chromium-ui-strings chromium-ui-resources python-native"
+DEPENDS = "chromium-base chromium-url chromium-skia chromium-ui-gfx chromium-ui-accessibility chromium-ui-events chromium-ui-base chromium-ui-compositor chromium-ui-aura chromium-ui-shelldialogs chromium-content chromium-ui-contentaccelerators chromium-ui-webdialogs chromium-ui-strings chromium-ui-resources python-native"
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
@@ -51,7 +51,7 @@ do_install_append() {
        fi
        # we need to copy generated headers living in the "build" directory
        cd ${B}/ui/views
-       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/ui/views
        # we need to copy generated .pak files living in the "build" directory
        mkdir -p ${D}${datadir}/chromium
        cp ${B}/ui/views/resources/*.pak ${D}${datadir}/chromium

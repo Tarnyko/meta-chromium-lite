@@ -50,6 +50,9 @@ do_install_append() {
        cd ${S}/../third_party/zlib
        mkdir -p ${D}${includedir}/chromium/third_party/zlib
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/third_party/zlib
+       # we need to copy generated headers living in the "build" directory
+       cd ${B}/${NAME}
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
 }
 
 FILES_${PN} += "${libdir}/chromium/*.so"
