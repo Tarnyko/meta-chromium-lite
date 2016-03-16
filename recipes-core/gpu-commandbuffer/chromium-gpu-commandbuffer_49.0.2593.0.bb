@@ -25,7 +25,7 @@ S = "${WORKDIR}/git/gpu/command_buffer"
 inherit cmake pkgconfig
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

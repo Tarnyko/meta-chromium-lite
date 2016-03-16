@@ -45,7 +45,7 @@ EXTRA_OECMAKE_append_i686 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86.cmake"
 EXTRA_OECMAKE_append_x86_64 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86_64.cmake"
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/mojo"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lmojo"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lmojo'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

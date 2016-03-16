@@ -130,7 +130,7 @@ ADD_LIBRARY(generated OBJECT ${CMAKE_BINARY_DIR}/ui/mojo/geometry/geometry.mojom
 # all files refer to "ui/...", so we include "../.." here
 # we include CMAKE_BINARY_DIR because generated .cc/.h files are inside
 SET(include_dirs ${INCLUDE_DIRS} ${harfbuzz_INCLUDE_DIRS} ${backend_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/../.. ${SKIA_EXT_DIR}/config ${SKIA_SOURCE_DIR}/include/core ${MOJO_SOURCE_DIR}/.. ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/ui)
-SET(link_libraries ${harfbuzz_LIBRARIES} ${backend_LIBRARIES} -ljpeg)
+SET(link_libraries ${LINK_LIBRARIES} ${harfbuzz_LIBRARIES} ${backend_LIBRARIES} -ljpeg)
 
 ADD_LIBRARY(ui_gfx SHARED $<TARGET_OBJECTS:geometry> $<TARGET_OBJECTS:animation> $<TARGET_OBJECTS:codec> $<TARGET_OBJECTS:image> $<TARGET_OBJECTS:font> $<TARGET_OBJECTS:range> $<TARGET_OBJECTS:ipc> $<TARGET_OBJECTS:backend> $<TARGET_OBJECTS:misc> $<TARGET_OBJECTS:mojo_geometry> $<TARGET_OBJECTS:generated>)
 INCLUDE_DIRECTORIES(${include_dirs})

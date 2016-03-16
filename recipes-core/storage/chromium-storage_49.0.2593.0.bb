@@ -29,7 +29,7 @@ S = "${WORKDIR}/git/${NAME}"
 inherit cmake pkgconfig
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lurl_lib -lsql -lnet -lleveldb"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lnet -lsql -lurl_lib -lbase -lleveldb'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

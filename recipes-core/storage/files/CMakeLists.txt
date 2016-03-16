@@ -55,7 +55,7 @@ ADD_LIBRARY(leveldb_ext OBJECT ${LEVELDB_EXT_DIR}/src/helpers/memenv/memenv.cc $
 # all files refer to "storage/...", so we include ".." here
 # we put LEVELDB_EXT_DIR first, because the fork has specific required headers/values
 SET(include_dirs ${INCLUDE_DIRS} ${RE2_SRC_DIR} ${SNAPPY_SRC_DIR}/linux ${LEVELDB_EXT_DIR} ${LEVELDB_EXT_DIR}/src ${LEVELDB_EXT_DIR}/src/include ${leveldb_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/..)
-SET(link_libraries ${leveldb_LIBRARIES})
+SET(link_libraries ${LINK_LIBRARIES} ${leveldb_LIBRARIES})
 
 ADD_LIBRARY(storage SHARED $<TARGET_OBJECTS:common> $<TARGET_OBJECTS:browser_blob> $<TARGET_OBJECTS:browser_database> $<TARGET_OBJECTS:browser_fileapi> $<TARGET_OBJECTS:browser_quota> $<TARGET_OBJECTS:re2> $<TARGET_OBJECTS:leveldb_ext>)
 INCLUDE_DIRECTORIES(${include_dirs})

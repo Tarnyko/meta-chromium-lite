@@ -25,7 +25,7 @@ S = "${WORKDIR}/git/${NAME}"
 inherit cmake pkgconfig
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/mojo"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lmojo"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lmojo -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

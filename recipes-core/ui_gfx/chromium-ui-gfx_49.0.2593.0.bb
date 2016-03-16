@@ -31,7 +31,7 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland',
 PACKAGECONFIG[wayland] = "-DBACKEND=OZONE,-DBACKEND=X11"
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/mojo -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lmojo -lipc -lskia"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lskia -lipc -lmojo -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}
