@@ -14,7 +14,7 @@ DEPENDS = "chromium-base chromium-v8 chromium-url chromium-net chromium-mojo chr
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "542190fd53c59ff8e25a623c3ee3c735f40c7b88"
+SRCREV_${NAME} = "46062afd5685ec14274d65444e9517bdb423a59d"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \
@@ -49,12 +49,13 @@ do_install_append() {
        mkdir -p ${D}${includedir}/chromium/content/shell
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/content/shell
        # we need to copy generated headers living in the "build" directory
-       cd ${B}/content/shell
-       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/content/shell
+       cd ${B}/grit
+       mkdir -p ${D}${includedir}/chromium/content/shell/grit
+       cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/content/shell/grit
        # we need to copy generated .pak files living in the "build" directory
        mkdir -p ${D}${datadir}/chromium
-       cp ${B}/content/shell/resources/*.pak ${D}${datadir}/chromium
+       cp ${B}/*.pak ${D}${datadir}/chromium
 }
 
-FILES_${PN} += "${libdir}/chromium/*.so ${datadir}/chromium/*.pak"
-FILES_${PN}-dbg += "${libdir}/chromium/.debug/*"
+FILES_${PN} += "${bindir}/chromium/content_shell ${datadir}/chromium/*"
+FILES_${PN}-dbg += "${bindir}/chromium/.debug/*"

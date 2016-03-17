@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0fca02217a5d49a14dfe2d11837bb34d"
 
 FILESEXTRAPATHS_prepend := ":${THISDIR}/../../shared:"
 
-DEPENDS = "chromium-base chromium-v8 chromium-url chromium-gin chromium-skia chromium-ui-gfx chromium-gpu chromium-cc icu harfbuzz libwebp libxml2 libxslt sqlite3 bison-native gperf-native python-native"
+DEPENDS = "chromium-base chromium-v8 chromium-url chromium-gin chromium-skia chromium-ui-gfx chromium-gpu chromium-cc icu harfbuzz libwebp libpng12 libxml2 libxslt sqlite3 bison-native gperf-native python-native"
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 

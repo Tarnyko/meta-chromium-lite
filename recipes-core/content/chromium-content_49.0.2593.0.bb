@@ -14,7 +14,7 @@ DEPENDS = "chromium-base chromium-url chromium-gin chromium-net chromium-mojo ch
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "334a62a5b5b2a194ccf150ccc0d1782ddd93296b"
+SRCREV_${NAME} = "120a23dc83f048ffa766bfdb3acf1d4e7f8a44cd"
 SRCREV_build = "1aa26aaba531135f3ca9ffd522bffb3f7b8f1be6"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
 SRCREV_mojo = "cf59faa001ce1dc4ed51e86d1069346152db6cb4"
@@ -38,6 +38,7 @@ SRC_URI = " \
            file://renderer_disable_battery_vibration_bluetooth_usb.patch \
            file://sandbox_linux_x86_disable_seccomp_bpf.patch \
            file://zygote_sandbox_use_nss.patch \
+           file://OZONE_disable_mediaozoneplatform.patch \
            file://z_disable_client_cert.patch \
            file://z_disable_webmediaplayerimpl.patch \
            file://z_time_zone_monitor_noicufork.patch \
