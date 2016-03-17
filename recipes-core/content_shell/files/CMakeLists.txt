@@ -109,7 +109,7 @@ SET(include_dirs ${INCLUDE_DIRS} ${GTEST_DIR}/include ${CHROMIUM_GL_DIR}/nonincl
 
 ADD_EXECUTABLE(content_shell $<TARGET_OBJECTS:devtools_discovery> $<TARGET_OBJECTS:devtools_http_handler> $<TARGET_OBJECTS:web_cache> $<TARGET_OBJECTS:ui_aura_test> $<TARGET_OBJECTS:ui_views_test> $<TARGET_OBJECTS:app> $<TARGET_OBJECTS:common> $<TARGET_OBJECTS:browser> $<TARGET_OBJECTS:renderer> $<TARGET_OBJECTS:utility>)
 INCLUDE_DIRECTORIES(${include_dirs})
-TARGET_LINK_LIBRARIES(content_shell -lbase -lv8 -lurl_lib -lcrcrypto -lsql -lgin -lgpu_command_buffer -lnet -lui_resources -lmojo -lstorage -lipc -lskia -lui_gfx -lui_accessibility -lui_events -lozone -lui_base -lmedia -lui_gl -lgpu -lcc -lblink -lgpu_blink -lcc_blink -lui_events_blink -lui_compositor -lui_aura -lui_touch_selection -lui_snapshot -lui_shell_dialogs -lmedia_blink -lcontent -lui_content_accelerators -lui_web_dialogs -lui_views)
+TARGET_LINK_LIBRARIES(content_shell ${LINK_LIBRARIES})
 
 INSTALL(TARGETS content_shell
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

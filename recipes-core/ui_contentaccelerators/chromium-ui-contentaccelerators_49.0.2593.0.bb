@@ -23,7 +23,7 @@ S = "${WORKDIR}/git/ui/content_accelerators"
 inherit cmake pkgconfig
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lui_events -lui_base -lblink -lcontent"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lcontent -lblink -lui_base -lui_events'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

@@ -23,7 +23,7 @@ S = "${WORKDIR}/git/gpu/blink"
 inherit cmake pkgconfig
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lskia -lui_gfx -lui_gl -lgpu -lcc -lblink"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lblink -lcc -lgpu -lui_gl -lui_gfx -lskia -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

@@ -34,11 +34,11 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland',
 PACKAGECONFIG[wayland] = "-DBACKEND=OZONE"
 PACKAGECONFIG[x11] = "-DBACKEND=X11,,virtual/libx11 libxext"
 
-CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/mesa/src/include -DGL_CONTEXT_LOST_KHR=0x0507"
 # we NEED to include "third_party/mesa/src/include", because it contains
 # GL headers whose definitions match those from "third_party/khronos/KHR/*.h",
 # which are heavily used by ANGLE
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lcrcrypto -lgpu_command_buffer -lipc -lui_gfx -lui_gl"
+CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/mesa/src/include -DGL_GLEXT_PROTOTYPES -DGL_CONTEXT_LOST_KHR=0x0507"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_gl -lui_gfx -lipc -lgpu_command_buffer -lcrcrypto -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

@@ -56,7 +56,7 @@ EXTRA_OECMAKE_append = " -DINCDIR:PATH=${STAGING_INCDIR}/chromium -DDATADIR:PATH
 
 # The first paths are for generated headers (Mojo, Skia, UI Gfx & CC) having relative paths
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/mojo -I${STAGING_INCDIR}/chromium/skia -I${STAGING_INCDIR}/chromium/ui -I${STAGING_INCDIR}/chromium/cc -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/WebKit -I${STAGING_INCDIR}/chromium/third_party/leveldatabase/src -I${STAGING_INCDIR}/chromium/third_party/leveldatabase/src/include -I${STAGING_INCDIR}/chromium/third_party/angle/src -I${STAGING_INCDIR}/chromium/third_party/mesa/src/include -I${STAGING_INCDIR}/chromium/v8/include -I${STAGING_INCDIR}/chromium/third_party/libyuv/include"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lurl_lib -lgin -lnet -lmojo -lstorage -lipc -lskia -lui_gfx -lui_accessibility -lui_events -lmedia -lui_base -lui_gl -lgpu -lcc -lblink -lui_events_blink -lgpu_blink -lcc_blink -lui_aura -lui_touch_selection -lui_snapshot -lui_shell_dialogs -lmedia_blink"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lmedia_blink -lui_shell_dialogs -lui_snapshot -lui_touch_selection -lui_aura -lcc_blink -lgpu_blink -lui_events_blink -lblink -lcc -lgpu -lui_gl -lui_base -lmedia -lui_events -lui_accessibility -lui_gfx -lskia -lipc -lstorage -lmojo -lnet -lgin -lurl_lib -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

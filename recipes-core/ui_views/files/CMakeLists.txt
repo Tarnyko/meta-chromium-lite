@@ -117,7 +117,7 @@ ADD_LIBRARY(generated OBJECT ${CMAKE_BINARY_DIR}/ui/views/resources/grit/views_r
 # we include CMAKE_BINARY_DIR because generated .cc/.h files are inside
 SET(include_dirs ${INCLUDE_DIRS} ${backend_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/../.. ${SKIA_EXT_DIR}/config ${SKIA_SOURCE_DIR}/include/core ${UI_STRINGS_DIR}/Build ${UI_RESOURCES_DIR}/Build ${UI_ACCESSIBILITY_DIR}/Build ${UI_GFX_DIR}/Build ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/ui/views/resources)
 # TODO : "${UI_*_DIR}/Build" are HACKs ! remove them when use .pc files !
-SET(link_libraries ${backend_LIBRARIES})
+SET(link_libraries ${LINK_LIBRARIES} ${backend_LIBRARIES})
 
 ADD_LIBRARY(ui_views SHARED $<TARGET_OBJECTS:accessibility> $<TARGET_OBJECTS:animation> $<TARGET_OBJECTS:bubble> $<TARGET_OBJECTS:controls> $<TARGET_OBJECTS:controls_webview> $<TARGET_OBJECTS:corewm> $<TARGET_OBJECTS:focus> $<TARGET_OBJECTS:layout> $<TARGET_OBJECTS:linuxui> $<TARGET_OBJECTS:touchui> $<TARGET_OBJECTS:widget> $<TARGET_OBJECTS:window> $<TARGET_OBJECTS:misc> $<TARGET_OBJECTS:generated> ${BACKEND_SOURCE_FILES})
 INCLUDE_DIRECTORIES(${include_dirs})

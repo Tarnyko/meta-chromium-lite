@@ -1,0 +1,22 @@
+PROJECT(chromium-gpu-examples CXX)
+
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8)
+SET(CMAKE_BUILD_TYPE Debug)
+SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+SET(PROJECT_NAME "Chromium - GPU examples")
+
+# CMake modules
+INCLUDE(GNUInstallDirs)
+
+IF(CMAKE_COMPILER_IS_GNUCXX)
+    ADD_DEFINITIONS(-std=c++11)
+ENDIF()
+
+
+ADD_EXECUTABLE(chromium_gpu-2_shader_manager chromium_gpu-2_shader_manager.cc)
+INCLUDE_DIRECTORIES(${include_dirs})
+TARGET_LINK_LIBRARIES(chromium_gpu-2_shader_manager ${LINK_LIBRARIES})
+
+INSTALL(TARGETS chromium_gpu-2_shader_manager
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}/chromium)

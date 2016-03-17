@@ -23,7 +23,7 @@ S = "${WORKDIR}/git/ui/events/blink"
 inherit cmake pkgconfig
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lui_gfx -lui_events -lcc -lblink"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lblink -lcc -lui_events -lui_gfx -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

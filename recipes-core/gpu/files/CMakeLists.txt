@@ -123,7 +123,7 @@ ADD_LIBRARY(smhasher OBJECT ${SMHASHER_SOURCE_DIR}/src/City.cpp)
 # contains the GL_CONTEXT_LOST_KHR definition we need
 # we include CMAKE_BINARY_DIR because generated .cc/.h files are inside
 SET(include_dirs ${INCLUDE_DIRS} ${backend_INCLUDE_DIRS} ${CHROMIUM_GL_DIR}/noninclude ${CHROMIUM_GL_DIR} ${CHROMIUM_GLES2_EXT_DIR} ${SKIA_EXT_DIR}/config ${SKIA_SOURCE_DIR}/include/core ${SKIA_SOURCE_DIR}/include/utils ${SKIA_SOURCE_DIR}/include/gpu ${ANGLE_SOURCE_DIR}/include ${ANGLE_SOURCE_DIR}/src ${RE2_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/gpu/command_buffer/service ${CMAKE_SOURCE_DIR}/..)
-SET(link_libraries ${backend_LIBRARIES})
+SET(link_libraries ${LINK_LIBRARIES} ${backend_LIBRARIES})
 
 ADD_LIBRARY(gpu SHARED $<TARGET_OBJECTS:c_lib> $<TARGET_OBJECTS:command_buffer_client> $<TARGET_OBJECTS:command_buffer_service> $<TARGET_OBJECTS:config> $<TARGET_OBJECTS:skia> $<TARGET_OBJECTS:ipc> $<TARGET_OBJECTS:generated> $<TARGET_OBJECTS:backend> $<TARGET_OBJECTS:angle> $<TARGET_OBJECTS:re2> $<TARGET_OBJECTS:smhasher>)
 INCLUDE_DIRECTORIES(${include_dirs})

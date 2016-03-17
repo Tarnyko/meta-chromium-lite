@@ -28,7 +28,7 @@ PACKAGECONFIG[wayland] = "-DBACKEND=OZONE"
 PACKAGECONFIG[x11] = "-DBACKEND=X11,,virtual/libx11 libxcursor libxext libxfixes libxrender libxscrnsaver"
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lurl_lib -lnet -lskia -lui_gfx -lui_events -lui_resources"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_resources -lui_events -lui_gfx -lskia -lnet -lurl_lib -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

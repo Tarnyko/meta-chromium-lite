@@ -35,7 +35,7 @@ inherit cmake pkgconfig
 # will build before "ui_aura"; it may then try to use the "ui_aura" headers,
 # which are still configured for X11, and thus fail...
 CXXFLAGS_append = " -I${S}/.. -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lipc -lskia -lui_gfx -lui_base"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_base -lui_gfx -lskia -lipc -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

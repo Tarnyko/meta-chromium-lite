@@ -74,7 +74,7 @@ ADD_LIBRARY(generated OBJECT ${CMAKE_BINARY_DIR}/ui/ozone/platform_list.cc ${CMA
 
 # all files refer to "ozone/...", so we include ".." here
 SET(include_dirs ${INCLUDE_DIRS} ${wayland_INCLUDE_DIRS} ${egl_INCLUDE_DIRS} ${xkbcommon_INCLUDE_DIRS} ${SKIA_SOURCE_DIR}/include/core ${SKIA_EXT_DIR}/config ${CMAKE_BINARY_DIR} ${CMAKE_SOURCE_DIR}/..)
-SET(link_libraries ${wayland_LIBRARIES} ${egl_LIBRARIES} ${xkbcommon_LIBRARIES})
+SET(link_libraries ${LINK_LIBRARIES} ${wayland_LIBRARIES} ${egl_LIBRARIES} ${xkbcommon_LIBRARIES})
 
 ADD_LIBRARY(ozone SHARED $<TARGET_OBJECTS:platform> $<TARGET_OBJECTS:wayland> $<TARGET_OBJECTS:wayland_protocols> $<TARGET_OBJECTS:ui_ozone> $<TARGET_OBJECTS:ui_display> $<TARGET_OBJECTS:generated>)
 INCLUDE_DIRECTORIES(${include_dirs})

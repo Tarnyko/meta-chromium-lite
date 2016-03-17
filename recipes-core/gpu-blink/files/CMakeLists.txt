@@ -51,7 +51,7 @@ ADD_LIBRARY(src OBJECT webgraphicscontext3d_impl.cc webgraphicscontext3d_in_proc
 
 # all files refer to "gpu/...", so we include "../.." here
 SET(include_dirs ${INCLUDE_DIRS} ${glesv2_INCLUDE_DIRS} ${CHROMIUM_GL_DIR}/noninclude ${CHROMIUM_GL_DIR} ${CHROMIUM_GLES2_EXT_DIR} ${SKIA_SOURCE_DIR}/include/core ${SKIA_SOURCE_DIR}/include/gpu ${SKIA_EXT_DIR}/config ${CMAKE_SOURCE_DIR}/../..)
-SET(link_libraries ${glesv2_LIBRARIES})
+SET(link_libraries ${LINK_LIBRARIES} ${glesv2_LIBRARIES})
 
 ADD_LIBRARY(gpu_blink SHARED $<TARGET_OBJECTS:src>)
 INCLUDE_DIRECTORIES(${include_dirs})

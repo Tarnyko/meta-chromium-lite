@@ -91,7 +91,7 @@ SET(link_libraries ${backend_LIBRARIES} -ldl)
 
 ADD_LIBRARY(ui_base SHARED $<TARGET_OBJECTS:base> $<TARGET_OBJECTS:accelerators> $<TARGET_OBJECTS:clipboard> $<TARGET_OBJECTS:cursor> $<TARGET_OBJECTS:dragdrop> $<TARGET_OBJECTS:l10n> $<TARGET_OBJECTS:models> $<TARGET_OBJECTS:resource> $<TARGET_OBJECTS:touch> $<TARGET_OBJECTS:ime> $<TARGET_OBJECTS:backend>)
 INCLUDE_DIRECTORIES(${include_dirs})
-TARGET_LINK_LIBRARIES(ui_base ${link_libraries})
+TARGET_LINK_LIBRARIES(ui_base ${LINK_LIBRARIES})
 
 INSTALL(TARGETS ui_base
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/chromium)

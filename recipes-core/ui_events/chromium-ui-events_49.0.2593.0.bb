@@ -33,7 +33,7 @@ PACKAGECONFIG[wayland] = "-DBACKEND=OZONE,,udev python-native"
 PACKAGECONFIG[x11] = "-DBACKEND=X11,,virtual/libx11 libxi xproto inputproto libevent"
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lipc -lskia -lui_gfx"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_gfx -lskia -lipc -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

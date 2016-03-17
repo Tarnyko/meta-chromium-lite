@@ -42,7 +42,7 @@ EXTRA_OECMAKE_append_i686 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86.cmake"
 EXTRA_OECMAKE_append_x86_64 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86_64.cmake"
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/v8/include -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/skia/include/ports -I${STAGING_INCDIR}/chromium/third_party/skia/include/effects"
-LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lv8 -lurl_lib -lgin -lskia -lui_gfx -lgpu -lcc"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lcc -lgpu -lui_gfx -lskia -lgin -lurl_lib -lv8 -lbase'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

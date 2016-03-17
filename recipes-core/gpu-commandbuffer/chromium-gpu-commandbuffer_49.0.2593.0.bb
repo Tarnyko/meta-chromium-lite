@@ -12,7 +12,7 @@ DEPENDS = "chromium-base"
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV = "0e3186cd4345cd9cb4b9b9958272044ca118a261"
+SRCREV = "1285fc8eebc70de99d1fb4f61ac3343a7b81fd72"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git \
            file://LICENSE \
@@ -30,6 +30,9 @@ EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lbase'"
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}
        cp ${WORKDIR}/CMakeLists.txt ${S}
+       # we apply this patch separately because it is outside of the source tree
+       cd ${S}/../..
+       patch -f -p1 < use_chromium_gles_headers.patch
 }
 
 do_install_append() {

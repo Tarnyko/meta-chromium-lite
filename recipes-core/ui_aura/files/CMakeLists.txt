@@ -71,7 +71,7 @@ ADD_LIBRARY(misc OBJECT env.cc input_state_lookup.cc layout_manager.cc scoped_wi
 # all files refer to "ui/...", so we include "../.." here
 SET(include_dirs ${INCLUDE_DIRS} ${backend_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/../.. ${SKIA_EXT_DIR}/config ${SKIA_SOURCE_DIR}/include/core ${UI_RESOURCES_DIR}/Build)
 # TODO : "${UI_RESOURCES_DIR}/Build" is a HACK ! Fix this once we use .pc files
-SET(link_libraries ${backend_LIBRARIES})
+SET(link_libraries ${LINK_LIBRARIES} ${backend_LIBRARIES})
 
 ADD_LIBRARY(ui_aura SHARED $<TARGET_OBJECTS:wm> $<TARGET_OBJECTS:native_theme> $<TARGET_OBJECTS:extra> $<TARGET_OBJECTS:client> $<TARGET_OBJECTS:misc> ${BACKEND_SOURCE_FILES})
 INCLUDE_DIRECTORIES(${include_dirs})
