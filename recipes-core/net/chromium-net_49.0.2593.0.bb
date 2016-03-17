@@ -40,7 +40,7 @@ do_configure_prepend() {
        cp ${WORKDIR}/CMakeLists.txt ${S}
        # we apply this patch separately because it is outside of the source tree
        cd ${S}/..
-       patch -f -p1 < zlib_no_MOZ_prefix.patch
+       patch -f -p1 < zlib_no_MOZ_prefix.patch || true
 }
 
 do_install_append() {

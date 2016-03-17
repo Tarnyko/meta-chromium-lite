@@ -38,8 +38,8 @@ do_configure_prepend() {
        # we may need to apply Ozone-Wayland specific patches
        if ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'true', 'false', d)}; then
            cd ${S}/../..
-           patch -f -p1 < OZONE-0007-Add-needed-support-in-PlatformWindow.patch
-           patch -f -p1 < OZONE-0013-Add-drag-and-drop-interfaces-to-PlatformWindowDelega.patch
+           patch -f -p1 < OZONE-0007-Add-needed-support-in-PlatformWindow.patch || true
+           patch -f -p1 < OZONE-0013-Add-drag-and-drop-interfaces-to-PlatformWindowDelega.patch || true
        fi
 }
 

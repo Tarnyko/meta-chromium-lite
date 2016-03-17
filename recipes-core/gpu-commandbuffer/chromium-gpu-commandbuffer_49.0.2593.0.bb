@@ -32,7 +32,7 @@ do_configure_prepend() {
        cp ${WORKDIR}/CMakeLists.txt ${S}
        # we apply this patch separately because it is outside of the source tree
        cd ${S}/../..
-       patch -f -p1 < use_chromium_gles_headers.patch
+       patch -f -p1 < use_chromium_gles_headers.patch || true
 }
 
 do_install_append() {

@@ -42,8 +42,8 @@ do_configure_prepend() {
        cp ${WORKDIR}/CMakeLists.txt ${S}
        # we apply these patches separately because they live in the source tree
        cd ${S}/..
-       patch -f -p1 < ozone/patches/0007-Add-needed-support-in-PlatformWindow.patch
-       patch -f -p1 < ozone/patches/0013-Add-drag-and-drop-interfaces-to-PlatformWindowDelega.patch
+       patch -f -p1 < ozone/patches/0007-Add-needed-support-in-PlatformWindow.patch || true
+       patch -f -p1 < ozone/patches/0013-Add-drag-and-drop-interfaces-to-PlatformWindowDelega.patch || true
 }
 
 do_install_append() {

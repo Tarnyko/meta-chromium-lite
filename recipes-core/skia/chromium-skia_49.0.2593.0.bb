@@ -12,13 +12,13 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0fca02217a5d49a14dfe2d11837bb34d"
 
 FILESEXTRAPATHS_prepend := ":${THISDIR}/../../shared:"
 
-DEPENDS = "chromium-mojo libjpeg-turbo libpng12 giflib libwebp freetype fontconfig python-native python-jinja2-native python-ply-native"
+DEPENDS = "chromium-mojo libjpeg-turbo libpng12 giflib libwebp freetype fontconfig python-native python-ply-native"
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
 SRCREV_${NAME} = "1464222d7ee83e93467b0d91399579bed5b57de2"
 SRCREV_skia-std = "19b0420e877d3e27d5315d8a539e671cf2b479eb"
-SRCREV_mojo = "cf59faa001ce1dc4ed51e86d1069346152db6cb4"
+SRCREV_mojo = "01c4c8813edc16161c19eb98367e9237ce193432"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \
            git://chromium.googlesource.com/skia.git;protocol=https;name=skia-std;destsuffix=git/third_party/skia \
