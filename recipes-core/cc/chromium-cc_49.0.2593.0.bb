@@ -30,8 +30,7 @@ S = "${WORKDIR}/git/${NAME}"
 
 inherit cmake pkgconfig
 
-EXTRA_OECMAKE_append_armv5 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
-EXTRA_OECMAKE_append_armv6 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
+EXTRA_OECMAKE_append_arm = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
 EXTRA_OECMAKE_append_i586 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86.cmake"
 EXTRA_OECMAKE_append_i686 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86.cmake"
 EXTRA_OECMAKE_append_x86_64 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86_64.cmake"

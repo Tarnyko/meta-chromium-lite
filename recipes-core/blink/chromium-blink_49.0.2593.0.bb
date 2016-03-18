@@ -13,7 +13,7 @@ DEPENDS = "chromium-base chromium-v8 chromium-url chromium-gin chromium-skia chr
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "9290ad7041de9fa282f7be7cb2b197d4882f8d33"
+SRCREV_${NAME} = "e86321bd06ff0d4d8a3418c8f482af2e9e3d9b9b"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \
@@ -35,13 +35,12 @@ inherit cmake pkgconfig
 DEPENDS_append_i586 = " yasm-native"
 DEPENDS_append_i686 = " yasm-native"
 DEPENDS_append_x86_64 = " yasm-native"
-EXTRA_OECMAKE_append_armv5 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
-EXTRA_OECMAKE_append_armv6 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
+EXTRA_OECMAKE_append_arm = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
 EXTRA_OECMAKE_append_i586 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86.cmake"
 EXTRA_OECMAKE_append_i686 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86.cmake"
 EXTRA_OECMAKE_append_x86_64 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86_64.cmake"
 
-CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/v8/include -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/skia/include/ports -I${STAGING_INCDIR}/chromium/third_party/skia/include/effects"
+CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/v8/include -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/skia/include/ports -I${STAGING_INCDIR}/chromium/third_party/skia/include/effects -I${STAGING_INCDIR}/chromium/third_party/khronos"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lcc -lgpu -lui_gfx -lskia -lgin -lurl_lib -lv8 -lbase'"
 
 do_configure_prepend() {

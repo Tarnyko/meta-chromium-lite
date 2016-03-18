@@ -28,6 +28,7 @@ SRC_URI = " \
            file://Toolchain-arm.cmake \
            file://Toolchain-x86.cmake \
            file://Toolchain-x86_64.cmake \
+           file://ARM_disable_neon.patch \
           "
 
 S = "${WORKDIR}/git/third_party/skia"
@@ -38,8 +39,7 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland',
 PACKAGECONFIG[wayland] = "-DBACKEND=EGL,,virtual/egl virtual/libgles2"
 PACKAGECONFIG[x11] = "-DBACKEND=GLX,,virtual/libx11 virtual/libgl libglu"
 
-EXTRA_OECMAKE_append_armv5 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
-EXTRA_OECMAKE_append_armv6 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
+EXTRA_OECMAKE_append_arm = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"
 EXTRA_OECMAKE_append_i586 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86.cmake"
 EXTRA_OECMAKE_append_i686 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86.cmake"
 EXTRA_OECMAKE_append_x86_64 = " -DCMAKE_TOOLCHAIN_FILE=../Toolchain-x86_64.cmake"
