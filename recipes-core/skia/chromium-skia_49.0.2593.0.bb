@@ -28,6 +28,7 @@ SRC_URI = " \
            file://Toolchain-arm.cmake \
            file://Toolchain-x86.cmake \
            file://Toolchain-x86_64.cmake \
+           file://disable_eglsyncextension.patch \
            file://ARM_disable_neon.patch \
           "
 

@@ -1,0 +1,31 @@
+--- a/src/gpu/gl/egl/SkCreatePlatformGLContext_egl.cpp	2016-03-18 15:45:03.711089892 +0000
++++ b/src/gpu/gl/egl/SkCreatePlatformGLContext_egl.cpp	2016-03-18 15:12:42.297784140 +0000
+@@ -299,20 +299,28 @@
+ }
+ 
+ SkPlatformGpuFence SkEGLFenceSync::insertFence() const {
++#if 0
+     return eglCreateSyncKHR(fDisplay, EGL_SYNC_FENCE_KHR, nullptr);
++#endif
++    return nullptr;
+ }
+ 
+ bool SkEGLFenceSync::flushAndWaitFence(SkPlatformGpuFence platformFence) const {
++#if 0
+     EGLSyncKHR eglsync = static_cast<EGLSyncKHR>(platformFence);
+     return EGL_CONDITION_SATISFIED_KHR == eglClientWaitSyncKHR(fDisplay,
+                                                                eglsync,
+                                                                EGL_SYNC_FLUSH_COMMANDS_BIT_KHR,
+                                                                EGL_FOREVER_KHR);
++#endif
++    return false;
+ }
+ 
+ void SkEGLFenceSync::deleteFence(SkPlatformGpuFence platformFence) const {
++#if 0
+     EGLSyncKHR eglsync = static_cast<EGLSyncKHR>(platformFence);
+     eglDestroySyncKHR(fDisplay, eglsync);
++#endif
+ }
+ 
+ } // anonymous namespace
