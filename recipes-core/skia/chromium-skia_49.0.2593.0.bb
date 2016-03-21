@@ -13,6 +13,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0fca02217a5d49a14dfe2d11837bb34d"
 FILESEXTRAPATHS_prepend := ":${THISDIR}/../../shared:"
 
 DEPENDS = "chromium-mojo libjpeg-turbo libpng12 giflib libwebp freetype fontconfig python-native python-ply-native"
+RDEPENDS_${PN} = "ttf-dejavu"
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 

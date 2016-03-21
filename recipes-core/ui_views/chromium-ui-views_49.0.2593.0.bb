@@ -14,11 +14,13 @@ DEPENDS = "chromium-base chromium-url chromium-skia chromium-ui-gfx chromium-ui-
 
 NAME = "${@'${BPN}'.replace('chromium-', '')}"
 
-SRCREV_${NAME} = "cde46612523cf0612ca563b563b6b090f3fffb98"
+SRCREV_${NAME} = "afc2a4cc8ff4b090b0ce3efa0338fe0b5b504e1e"
 SRCREV_tools = "a5bb4ed0080f1f0940b994875020e4f6b8aca0c6"
+SRCREV_ozone-wayland = "9816917277df5defa2d2787aeea3c857465714dc"
 SRC_URI = " \
            git://github.com/Tarnyko/chromium-${NAME}.git;name=${NAME} \
            git://github.com/Tarnyko/chromium-tools.git;name=tools;destsuffix=git/tools \
+           git://github.com/01org/ozone-wayland.git;name=ozone-wayland;destsuffix=git/ozone \
            file://LICENSE \
            file://CMakeLists.txt \
           "

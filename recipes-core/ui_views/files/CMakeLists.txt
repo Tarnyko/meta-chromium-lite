@@ -12,6 +12,7 @@ SET(UI_STRINGS_DIR "${CMAKE_SOURCE_DIR}/../strings")
 SET(UI_RESOURCES_DIR "${CMAKE_SOURCE_DIR}/../resources")
 SET(UI_ACCESSIBILITY_DIR "${CMAKE_SOURCE_DIR}/../accessibility")
 SET(UI_GFX_DIR "${CMAKE_SOURCE_DIR}/../gfx")
+SET(OZONE_DIR "${CMAKE_SOURCE_DIR}/../../ozone")
 
 # Variable paths for required third-parties
 SET(GRIT_DIR "${CMAKE_SOURCE_DIR}/../..")
@@ -41,7 +42,9 @@ INCLUDE(GNUInstallDirs)
 
 # Optional definitions
 IF(BACKEND STREQUAL "OZONE")
-  SET(BACKEND_SOURCE_FILES widget/desktop_aura/desktop_factory_ozone.cc widget/desktop_aura/desktop_screen_ozone.cc widget/desktop_aura/desktop_window_tree_host_ozone.cc)
+#  These Ozone-specific classes are reimplemented by Ozone itself
+#  SET(BACKEND_SOURCE_FILES widget/desktop_aura/desktop_factory_ozone.cc widget/desktop_aura/desktop_screen_ozone.cc widget/desktop_aura/desktop_window_tree_host_ozone.cc)
+  SET(BACKEND_SOURCE_FILES ${OZONE_DIR}/ui/desktop_aura/desktop_drag_drop_client_wayland.cc ${OZONE_DIR}/ui/desktop_aura/desktop_screen_wayland.cc ${OZONE_DIR}/ui/desktop_aura/desktop_window_tree_host_ozone.cc)
   ADD_DEFINITIONS(-DUSE_OZONE)
 ENDIF(BACKEND STREQUAL "OZONE")
 
