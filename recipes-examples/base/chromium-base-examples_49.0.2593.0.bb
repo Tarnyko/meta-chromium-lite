@@ -1,6 +1,6 @@
 SUMMARY = "Chromium Base examples"
 DESCRIPTION = "Some examples files for the Chromium Base helper library."
-HOMEPAGE = "https://www.chromium.org"
+HOMEPAGE = "http://www.iot.bzh"
 
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0fca02217a5d49a14dfe2d11837bb34d"
@@ -23,6 +23,7 @@ inherit cmake
 
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
 LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase"
+LDFLAGS_append = " -Wl,-rpath,${libdir}/chromium"
 
 do_configure_prepend() {
        mkdir -p ${S}
