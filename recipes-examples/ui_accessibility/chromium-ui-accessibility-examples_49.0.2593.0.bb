@@ -21,7 +21,7 @@ CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/sk
 CXXFLAGS_append = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', ' -DUSE_OZONE', ' -DUSE_X11', d)}"
 LDFLAGS_append = " -Wl,-rpath-link,${STAGING_LIBDIR}/chromium -Wl,-rpath,${libdir}/chromium"
 LDFLAGS_remove = " -Wl,--as-needed"
-EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_accessibility -lbase'"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_accessibility -lbase -lgio-2.0'"
 
 
 do_configure_prepend() {

@@ -32,6 +32,7 @@ S = "${WORKDIR}/git/${NAME}"
 
 inherit cmake pkgconfig
 
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lsql -lcrcrypto -lurl_lib -lbase'"
 
@@ -53,7 +54,11 @@ do_install_append() {
        # we need to copy generated headers living in the "build" directory
        cd ${B}/${NAME}
        cp --parents `find . -name "*.h"` ${D}${includedir}/chromium/${NAME}
+       # we need to copy generated .pak files living in the "build" directory
+       mkdir -p ${D}${datadir}/chromium
+       cd ${B}/${NAME}
+       cp *.pak ${D}${datadir}/chromium
 }
 
-FILES_${PN} += "${libdir}/chromium/*.so"
+FILES_${PN} += "${libdir}/chromium/*.so ${datadir}/chromium/*.pak"
 FILES_${PN}-dbg += "${libdir}/chromium/.debug/*"

@@ -24,6 +24,7 @@ S = "${WORKDIR}/git/${NAME}"
 
 inherit cmake pkgconfig
 
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/mojo"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lmojo -lbase'"
 

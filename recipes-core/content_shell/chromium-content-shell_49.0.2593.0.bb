@@ -35,9 +35,10 @@ PACKAGECONFIG[wayland] = "-DBACKEND=OZONE,-DBACKEND=X11"
 # The first paths are for generated headers (Mojo, Content) having relative paths
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/mojo -I${STAGING_INCDIR}/chromium/content -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/WebKit -I${STAGING_INCDIR}/chromium/v8/include -DUSE_AURA"
 CXXFLAGS_append = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', ' -DUSE_OZONE', ' -DUSE_X11', d)}"
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 LDFLAGS_append = " -Wl,-rpath-link,${STAGING_LIBDIR}/chromium -Wl,-rpath,${libdir}/chromium"
 LDFLAGS_remove = " -Wl,--as-needed"
-EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_views -lui_web_dialogs -lui_content_accelerators -lcontent -lmedia_blink -lui_shell_dialogs -lui_snapshot -lui_touch_selection -lui_aura -lui_compositor -lui_events_blink -lcc_blink -lgpu_blink -lblink -lcc -lgpu -lui_gl -lmedia -lui_base ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '-lozone', '', d)} -lui_events -lui_accessibility -lui_gfx -lskia -lipc -lstorage -lmojo -lui_resources -lnet -lgpu_command_buffer -lgin -lsql -lcrcrypto -lurl_lib -lv8 -lbase'"
+EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_views -lui_web_dialogs -lui_content_accelerators -lcontent -lmedia_blink -lui_shell_dialogs -lui_snapshot -lui_touch_selection -lui_aura -lui_compositor -lui_events_blink -lcc_blink -lgpu_blink -lblink -lcc -lgpu -lui_gl -lmedia -lui_base ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '-lozone', '', d)} -lui_events -lui_accessibility -lui_gfx -lskia -lipc -lstorage -lmojo -lui_resources -lnet -lgpu_command_buffer -lgin -lsql -lcrcrypto -lurl_lib -lv8 -lbase -lgio-2.0'"
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

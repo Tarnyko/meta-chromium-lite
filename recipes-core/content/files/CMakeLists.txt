@@ -124,6 +124,9 @@ MESSAGE(STATUS "Generating .cc,.h,.pak from .grd...")
 EXECUTE_PROCESS(COMMAND mkdir -p content/ WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 EXECUTE_PROCESS(COMMAND mkdir -p blink/ WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
+# this HACK is needed to create "content_resources.pak"
+EXECUTE_PROCESS(COMMAND sh -c "cp -ra mojo/mojo/* mojo/" WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/..)
+
 EXECUTE_PROCESS(COMMAND ${GRIT_DIR}/tools/grit/grit.py -i content_resources.grd build -f ${GRIT_DIR}/tools/gritsettings/resource_ids -o ${CMAKE_BINARY_DIR}/content --write-only-new=0 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND ${GRIT_DIR}/tools/grit/grit.py -i app/resources/content_resources.grd build -f ${GRIT_DIR}/tools/gritsettings/resource_ids -o ${CMAKE_BINARY_DIR}/content/app/resources --write-only-new=0 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
 EXECUTE_PROCESS(COMMAND ${GRIT_DIR}/tools/grit/grit.py -i app/strings/content_strings.grd build -f ${GRIT_DIR}/tools/gritsettings/resource_ids -o ${CMAKE_BINARY_DIR}/content/app/strings --write-only-new=0 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})

@@ -29,7 +29,9 @@ inherit cmake pkgconfig
 PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)}"
 PACKAGECONFIG[wayland] = "-DBACKEND=OZONE,-DBACKEND=X11"
 
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
+LDFLAGS_remove = " -Wl,--as-needed"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_gfx -lbase'"
 
 do_configure_prepend() {

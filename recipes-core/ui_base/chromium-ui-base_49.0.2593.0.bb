@@ -27,6 +27,7 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland',
 PACKAGECONFIG[wayland] = "-DBACKEND=OZONE"
 PACKAGECONFIG[x11] = "-DBACKEND=X11,,virtual/libx11 libxcursor libxext libxfixes libxrender libxscrnsaver"
 
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_resources -lui_events -lui_gfx -lskia -lnet -lurl_lib -lbase'"
 

@@ -24,6 +24,7 @@ S = "${WORKDIR}/git/ui/resources"
 
 inherit cmake pkgconfig
 
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
 
 do_configure_prepend() {

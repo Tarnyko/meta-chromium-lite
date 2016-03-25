@@ -22,6 +22,7 @@ S = "${WORKDIR}/git/ui/snapshot"
 
 inherit cmake pkgconfig
 
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
 LDFLAGS_append = " -L${STAGING_LIBDIR}/chromium -lbase -lskia -lui_gfx -lcc -lui_compositor -lui_aura"
 

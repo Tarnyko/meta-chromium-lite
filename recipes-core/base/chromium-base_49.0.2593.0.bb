@@ -31,6 +31,8 @@ S = "${WORKDIR}/git/${NAME}"
 
 inherit cmake pkgconfig
 
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
+
 PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)}"
 PACKAGECONFIG[wayland] = "-DBACKEND=OZONE,-DBACKEND=X11"
 

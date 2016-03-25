@@ -22,6 +22,7 @@ S = "${WORKDIR}/git/ui/events/blink"
 
 inherit cmake pkgconfig
 
+CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lblink -lcc -lui_events -lui_gfx -lbase'"
 

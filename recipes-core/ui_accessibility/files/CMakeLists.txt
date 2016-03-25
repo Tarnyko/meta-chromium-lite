@@ -21,7 +21,7 @@ INCLUDE(FindPkgConfig)
 INCLUDE(GNUInstallDirs)
 
 # Mandatory dependencies
-PKG_CHECK_MODULES(gconf REQUIRED gconf-2.0)
+PKG_CHECK_MODULES(gconf REQUIRED gconf-2.0 gio-2.0)
 PKG_CHECK_MODULES(atk REQUIRED atk)
 
 # Optional dependencies and definitions
