@@ -40,6 +40,7 @@ PACKAGECONFIG[x11] = "-DBACKEND=X11,,virtual/libx11 libxext"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/utils -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -I${STAGING_INCDIR}/chromium/third_party/mesa/src/include -DGL_GLEXT_PROTOTYPES -DGL_CONTEXT_LOST_KHR=0x0507"
 CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_gl -lui_gfx -lipc -lgpu_command_buffer -lcrcrypto -lbase'"
+FULL_OPTIMIZATION = ""
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

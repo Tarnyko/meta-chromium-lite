@@ -39,6 +39,7 @@ CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 LDFLAGS_append = " -Wl,-rpath-link,${STAGING_LIBDIR}/chromium -Wl,-rpath,${libdir}/chromium"
 LDFLAGS_remove = " -Wl,--as-needed"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_views -lui_web_dialogs -lui_content_accelerators -lcontent -lmedia_blink -lui_shell_dialogs -lui_snapshot -lui_touch_selection -lui_aura -lui_compositor -lui_events_blink -lcc_blink -lgpu_blink -lblink -lcc -lgpu -lui_gl -lmedia -lui_base ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '-lozone', '', d)} -lui_events -lui_accessibility -lui_gfx -lskia -lipc -lstorage -lmojo -lui_resources -lnet -lgpu_command_buffer -lgin -lsql -lcrcrypto -lurl_lib -lv8 -lbase -lgio-2.0'"
+FULL_OPTIMIZATION = ""
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}

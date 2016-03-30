@@ -28,6 +28,7 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland',
 PACKAGECONFIG[wayland] = "-DBACKEND=OZONE,,chromium-ozone"
 PACKAGECONFIG[x11] = "-DBACKEND=X11,,virtual/libx11 libxcomposite libxext"
 
+FULL_OPTIMIZATION = ""
 CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/third_party/khronos -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core -I${STAGING_INCDIR}/chromium/third_party/skia/include/gpu -fpermissive -DGL_CONTEXT_LOST_KHR=0x0507"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', ' -lozone', '', d)} -lui_gfx -lskia -lgpu_command_buffer -lbase'"

@@ -31,6 +31,7 @@ S = "${WORKDIR}/git/${NAME}"
 
 inherit cmake pkgconfig
 
+FULL_OPTIMIZATION = ""
 CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 
 PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)}"

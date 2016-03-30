@@ -22,6 +22,7 @@ S = "${WORKDIR}/git/ui/shell_dialogs"
 
 inherit cmake pkgconfig
 
+FULL_OPTIMIZATION = ""
 CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_aura -lui_base -lskia -lbase'"

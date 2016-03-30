@@ -94,7 +94,7 @@ IF(BACKEND STREQUAL "OSMESA")
 ENDIF(BACKEND STREQUAL "OSMESA")
 
 # Common definitions
-ADD_DEFINITIONS(-DSK_INTERNAL=1 -DSK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1 -DSK_SUPPORT_GPU=1 -DSK_FORCE_DISTANCE_FIELD_TEXT=0)
+ADD_DEFINITIONS(-DSK_INTERNAL=1 -DSK_ALLOW_STATIC_GLOBAL_INITIALIZERS=1 -DSK_SUPPORT_GPU=1 -DGR_GL_IGNORE_ES3_MSAA=0 -DSK_FORCE_DISTANCE_FIELD_TEXT=0)
 ADD_DEFINITIONS(-DSK_GAMMA_SRGB -DSK_GAMMA_APPLY_TO_A8 -DSK_SAMPLES_FOR_X)
 ADD_DEFINITIONS(-DSK_BUILD_FOR_UNIX -DSKIA_DLL -DSKIA_IMPLEMENTATION=1)
 
@@ -110,10 +110,8 @@ ELSE()
 ENDIF(CMAKE_BUILD_TYPE MATCHES Debug)
 
 IF(CMAKE_COMPILER_IS_GNUCC)
-    ADD_DEFINITIONS(-fno-exceptions -fstrict-aliasing -Wall -Wextra -Winit-self -Wpointer-arith -Wsign-compare -Wno-unused-parameter)
-    ADD_DEFINITIONS(-fsanitize=thread -DTHREAD_SANITIZER)
+    ADD_DEFINITIONS(-fno-exceptions -fstrict-aliasing -Wall -Wextra -Winit-self -Wpointer-arith -Wsign-compare -Wno-unused-parameter -Werror)
 ENDIF()
-#-Werror
 
 IF(CMAKE_COMPILER_IS_GNUCXX)
     ADD_DEFINITIONS(-std=c++11 -fno-threadsafe-statics -Wnon-virtual-dtor -Wno-literal-suffix -Wno-deprecated-declarations)

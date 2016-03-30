@@ -22,6 +22,7 @@ S = "${WORKDIR}/git/ui/content_accelerators"
 
 inherit cmake pkgconfig
 
+FULL_OPTIMIZATION = ""
 CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 CXXFLAGS_append = " -I${STAGING_INCDIR}/chromium"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lcontent -lblink -lui_base -lui_events'"

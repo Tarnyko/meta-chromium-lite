@@ -24,6 +24,7 @@ S = "${WORKDIR}/git"
 
 inherit cmake pkgconfig
 
+FULL_OPTIMIZATION = ""
 CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 
 EXTRA_OECMAKE_append_arm = "-DCMAKE_TOOLCHAIN_FILE=../Toolchain-arm.cmake"

@@ -37,6 +37,7 @@ inherit cmake pkgconfig
 CXXFLAGS_append = " -I${S}/.. -I${STAGING_INCDIR}/chromium -I${STAGING_INCDIR}/chromium/skia/config -I${STAGING_INCDIR}/chromium/third_party/skia/include/core"
 CXXFLAGS_remove = "-fvisibility-inlines-hidden"
 EXTRA_OECMAKE_append = " -DLINK_LIBRARIES='-L${STAGING_LIBDIR}/chromium -lui_base -lui_gfx -lskia -lipc -lbase'"
+FULL_OPTIMIZATION = ""
 
 do_configure_prepend() {
        cp ${WORKDIR}/LICENSE ${S}
